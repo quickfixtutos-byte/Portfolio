@@ -1,0 +1,387 @@
+<title>Mootaz Akermi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: one calm column. Hero, certifications, two projects (the second carries a request-path diagram), PathTech, work list, skills, contact. */
+:root {
+  --bg: #F3F6F7;
+  --surface: #FFFFFF;
+  --fg: #0F1B22;
+  --muted: #51636E;
+  --line: #D5DEE2;
+  --line-strong: #AEBBC2;
+  --accent: #2347D8;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E4E9FC;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1419; --surface: #121D24; --fg: #E6EEF2; --muted: #8DA0AB;
+    --line: #223039; --line-strong: #3A4C57; --accent: #86A2FF; --accent-ink: #0C1419; --accent-soft: #1A2745;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1419; --surface: #121D24; --fg: #E6EEF2; --muted: #8DA0AB;
+  --line: #223039; --line-strong: #3A4C57; --accent: #86A2FF; --accent-ink: #0C1419; --accent-soft: #1A2745;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 var(--font-body);
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 920px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding: 18px 0; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font: 500 14px var(--font-body); }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--fg); }
+.theme { font: 500 13px var(--font-mono); color: var(--muted); background: none; border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.theme:hover { color: var(--fg); border-color: var(--fg); }
+
+/* hero */
+.hero { padding: 40px 0 36px; display: grid; gap: 18px; }
+.eyebrow { font: 500 13px var(--font-mono); color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 1.02; }
+.lead { max-width: 62ch; font-size: 1.15rem; color: var(--fg); }
+.lead span { color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 500 14px var(--font-body); padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--fg); text-decoration: none; cursor: pointer; }
+.btn:hover { border-color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+/* sections */
+section { padding: 36px 0 8px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: 20px; border-top: 1px solid var(--line-strong); padding-top: 14px; }
+.sec-head h2 { font-size: 1.6rem; }
+.sec-head .mono { font-size: 13px; color: var(--muted); }
+
+/* certifications */
+.certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cert { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.cert .lvl { font: 500 12px var(--font-mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+.cert h3 { font-size: 1.05rem; line-height: 1.3; }
+.cert .when { font-size: 14px; color: var(--muted); }
+
+/* projects */
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; gap: 16px; margin-bottom: 20px; }
+.project header { display: grid; gap: 8px; }
+.project h3 { font-size: 1.4rem; }
+.project .sum { color: var(--muted); max-width: 66ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 12px var(--font-mono); padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.points { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; max-width: 70ch; }
+.points li::marker { color: var(--accent); }
+.note { font-size: 14px; color: var(--muted); border-left: 2px solid var(--line-strong); padding-left: 12px; max-width: 70ch; }
+.note b { color: var(--fg); font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+figure { margin: 0; display: grid; gap: 8px; }
+.diagram { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); padding: 12px; }
+.diagram svg { display: block; min-width: 640px; width: 100%; height: auto; }
+figcaption { font: 13px var(--font-mono); color: var(--muted); }
+.n { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; }
+.n.hl { stroke: var(--accent); stroke-width: 1.6; }
+.t { fill: var(--fg); font: 600 13px var(--font-body); }
+.s { fill: var(--muted); font: 400 10.5px var(--font-mono); }
+.a { stroke: var(--accent); fill: none; stroke-width: 1.5; }
+.a.dash, .x { stroke-dasharray: 4 4; }
+.x { fill: none; stroke: var(--line-strong); stroke-width: 1.2; }
+.lbl { fill: var(--accent); font: 500 10.5px var(--font-mono); }
+
+/* PathTech */
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; }
+.feature h3 { font-size: 1.4rem; margin-bottom: 8px; }
+.feature p { color: var(--muted); max-width: 60ch; }
+.facts { display: grid; gap: 12px; align-content: start; margin: 0; padding: 0; list-style: none; }
+.facts li { border-left: 2px solid var(--accent); padding-left: 12px; font-size: 15px; }
+.facts b { display: block; font: 600 1.25rem var(--font-display); }
+
+/* work list */
+.roles { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.role { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.role .when { font: 500 13px var(--font-mono); color: var(--muted); padding-top: 3px; }
+.role h3 { font-size: 1.05rem; }
+.role .org { color: var(--muted); font-size: 15px; }
+.role p { margin-top: 4px; max-width: 66ch; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; }
+.skill h3 { font: 500 12px var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.skill .chips .chip { background: var(--bg); color: var(--fg); border: 1px solid var(--line); }
+
+.edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; margin-top: 16px; }
+.edu p { font-size: 15px; }
+.edu .k { font: 500 12px var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 2px; }
+
+/* contact */
+.contact { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px; display: grid; gap: 14px; }
+.contact h2 { font-size: 1.6rem; }
+.contact p { color: var(--muted); max-width: 56ch; }
+.mail { font: 500 15px var(--font-mono); user-select: all; word-break: break-all; }
+footer { padding-top: 28px; font: 13px var(--font-mono); color: var(--muted); }
+
+@media (max-width: 720px) {
+  .certs, .skills, .edu { grid-template-columns: minmax(0, 1fr); }
+  .feature { grid-template-columns: minmax(0, 1fr); }
+  .role { grid-template-columns: minmax(0, 1fr); }
+  .project, .feature, .contact { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#pathtech">PathTech</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme" id="themeBtn" type="button" aria-label="Switch color theme">theme</button>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">Cloud administrator &middot; IT support &middot; Tunisia</p>
+    <h1>Mootaz Akermi</h1>
+    <p class="lead">I build AWS infrastructure as code with Terraform and keep it secure and observable. <span>I also teach computer science, so I explain what I deploy in plain words.</span></p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" data-link="linkedin" hidden target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" data-link="github" hidden target="_blank" rel="noopener">GitHub</a>
+      <button class="btn" type="button" id="copyTop">Copy email</button>
+    </div>
+  </header>
+
+  <section id="certs" aria-labelledby="certs-h">
+    <div class="sec-head"><h2 id="certs-h">Certifications</h2><span class="mono">AWS</span></div>
+    <div class="certs">
+      <div class="cert"><span class="lvl">Associate</span><h3>AWS Certified Solutions Architect &ndash; Associate</h3><span class="when">SAA-C03 &middot; September 2026</span></div>
+      <div class="cert"><span class="lvl">Foundational</span><h3>AWS Certified AI Practitioner</h3><span class="when">July 2026</span></div>
+      <div class="cert"><span class="lvl">Foundational</span><h3>AWS Certified Cloud Practitioner</h3><span class="when">CLF-C02</span></div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="sec-head"><h2 id="projects-h">Cloud projects</h2><span class="mono">Everything defined in Terraform</span></div>
+
+    <article class="project">
+      <header>
+        <h3>Serverless to-do API</h3>
+        <p class="sum">A secured REST API and a small web app on AWS, with no servers to manage. Users sign in, then create, read, update and delete their own tasks.</p>
+        <div class="chips"><span class="chip">API Gateway</span><span class="chip">Lambda (Python)</span><span class="chip">DynamoDB</span><span class="chip">Cognito</span><span class="chip">WAF</span><span class="chip">X-Ray</span><span class="chip">S3</span><span class="chip">Terraform</span></div>
+      </header>
+
+      <figure>
+        <div class="diagram">
+          <svg viewBox="0 0 760 290" role="img" aria-labelledby="dg-t dg-d" xmlns="http://www.w3.org/2000/svg">
+            <title id="dg-t">Request path of the serverless to-do API</title>
+            <desc id="dg-d">A browser signs in with Cognito, sends requests through WAF to API Gateway, which checks the Cognito token and calls five Lambda functions that read and write a DynamoDB table. X-Ray traces the API Gateway and Lambda part. The browser loads the web app from S3.</desc>
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill: var(--accent)"/></marker>
+            </defs>
+
+            <rect class="x" x="262" y="196" width="316" height="44" rx="8"/>
+            <text class="s" x="274" y="232">X-Ray traces this segment</text>
+
+            <rect class="n" x="10" y="110" width="110" height="60" rx="8"/>
+            <text class="t" x="65" y="136" text-anchor="middle">Browser</text>
+            <text class="s" x="65" y="154" text-anchor="middle">to-do web app</text>
+
+            <rect class="n" x="10" y="214" width="110" height="56" rx="8"/>
+            <text class="t" x="65" y="239" text-anchor="middle">S3</text>
+            <text class="s" x="65" y="256" text-anchor="middle">static frontend</text>
+
+            <rect class="n hl" x="270" y="16" width="140" height="56" rx="8"/>
+            <text class="t" x="340" y="41" text-anchor="middle">Cognito</text>
+            <text class="s" x="340" y="58" text-anchor="middle">user pool</text>
+
+            <rect class="n" x="150" y="110" width="90" height="60" rx="8"/>
+            <text class="t" x="195" y="136" text-anchor="middle">WAF</text>
+            <text class="s" x="195" y="154" text-anchor="middle">web ACL</text>
+
+            <rect class="n hl" x="270" y="110" width="140" height="60" rx="8"/>
+            <text class="t" x="340" y="136" text-anchor="middle">API Gateway</text>
+            <text class="s" x="340" y="154" text-anchor="middle">5 routes &middot; cache</text>
+
+            <rect class="n" x="450" y="110" width="120" height="60" rx="8"/>
+            <text class="t" x="510" y="136" text-anchor="middle">Lambda</text>
+            <text class="s" x="510" y="154" text-anchor="middle">5 CRUD functions</text>
+
+            <rect class="n" x="610" y="110" width="140" height="60" rx="8"/>
+            <text class="t" x="680" y="136" text-anchor="middle">DynamoDB</text>
+            <text class="s" x="680" y="154" text-anchor="middle">single table &middot; GSI1</text>
+
+            <path class="a" d="M120 140 H148" marker-end="url(#ah)"/>
+            <path class="a" d="M240 140 H268" marker-end="url(#ah)"/>
+            <path class="a" d="M410 140 H448" marker-end="url(#ah)"/>
+            <path class="a" d="M570 140 H608" marker-end="url(#ah)"/>
+            <path class="a" d="M65 172 V212" marker-end="url(#ah)"/>
+            <path class="a" d="M65 108 V44 H268" marker-end="url(#ah)"/>
+            <path class="a dash" d="M340 74 V108" marker-end="url(#ah)"/>
+            <text class="lbl" x="76" y="36">1 sign in</text>
+            <text class="lbl" x="76" y="196">load app</text>
+            <text class="lbl" x="350" y="95">validate token</text>
+            <text class="lbl" x="150" y="128">2 call API</text>
+          </svg>
+        </div>
+        <figcaption>Request path as deployed. A sign-in returns a token, and API Gateway checks it before any Lambda runs.</figcaption>
+      </figure>
+
+      <ul class="points">
+        <li>REST API on API Gateway with five CRUD routes. Each route calls its own Python Lambda function, under a least-privilege IAM role.</li>
+        <li>Cognito user pool authorizer protects every route. The static frontend (HTML, CSS, JavaScript) handles login and calls the API with CORS enabled.</li>
+        <li>DynamoDB single-table design with partition and sort keys, one global secondary index and streams enabled.</li>
+        <li>WAF and API Gateway caching switch on from Terraform variables. I confirmed cache hits and misses in CloudWatch metrics and used X-Ray to trace requests.</li>
+      </ul>
+      <p class="note"><b>What went wrong.</b> AWS account verification blocked the CloudFront distribution I had designed, and the support case stayed open past my deadline. I served the frontend from S3 static website hosting instead and documented the change in the README.</p>
+      <div class="links"><a class="btn" data-link="repoApi" hidden target="_blank" rel="noopener">View code on GitHub</a></div>
+    </article>
+
+    <article class="project">
+      <header>
+        <h3>Static website on S3 and CloudFront</h3>
+        <p class="sum">A demo copy of the PathTech Academy front end, hosted on S3 and delivered through CloudFront. I first built it by hand in the AWS console to understand each piece, then rebuilt it completely in Terraform.</p>
+        <div class="chips"><span class="chip">S3</span><span class="chip">CloudFront</span><span class="chip">Terraform</span></div>
+      </header>
+      <ul class="points">
+        <li>Bucket, access policy and distribution all live in Terraform, so the whole site can be created or destroyed with one command.</li>
+        <li>Runs on the default CloudFront domain, with no custom domain or Route 53.</li>
+      </ul>
+      <div class="links"><a class="btn" data-link="repoStatic" hidden target="_blank" rel="noopener">View code on GitHub</a></div>
+    </article>
+  </section>
+
+  <section id="pathtech" aria-labelledby="pathtech-h">
+    <div class="sec-head"><h2 id="pathtech-h">PathTech Academy</h2><span class="mono">Founder</span></div>
+    <div class="feature">
+      <div>
+        <h3>Computer science for Tunisian Baccalaur&eacute;at students</h3>
+        <p>I founded and run an education platform with short video lessons, explanations and exercises, plus a website with its own SEO setup. Each chapter is a YouTube playlist of 2 to 4 minute videos, linked end to end so students move from one chapter to the next.</p>
+      </div>
+      <ul class="facts">
+        <li><b>150,000+ views</b>across the Excel course videos</li>
+        <li><b>First paying students</b>online sessions launched in October 2026</li>
+        <li><b>CAPES prep app</b>QCMs and corrections, sold by monthly subscription</li>
+      </ul>
+    </div>
+    <p style="margin-top:12px"><a data-link="site" hidden target="_blank" rel="noopener">pathtechacademy.com</a></p>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sec-head"><h2 id="work-h">Work experience</h2><span class="mono">Under a year in companies, plus my own products</span></div>
+    <div class="roles">
+      <div class="role">
+        <div class="when">2023 &ndash; present</div>
+        <div><h3>Freelance full-stack developer</h3><p>Websites and web applications on several stacks, including React, Angular, Node.js and Python.</p></div>
+      </div>
+      <div class="role">
+        <div class="when">Oct 2023 &ndash; 2024</div>
+        <div><h3>Web and Git trainer</h3><div class="org">Enicarthage &amp; ISI Ariana</div><p>Delivered more than 15 training sessions on HTML, JavaScript, Git and Tailwind CSS to engineering students.</p></div>
+      </div>
+      <div class="role">
+        <div class="when">Aug &ndash; Oct 2023</div>
+        <div><h3>Front-end developer</h3><div class="org">Voltat Technologies, La Marsa</div><p>Led the front-end of the company website with React.js and Tailwind CSS.</p></div>
+      </div>
+      <div class="role">
+        <div class="when">5 months</div>
+        <div><h3>Web developer, final-year internship</h3><div class="org">Scheidt &amp; Bachmann, M&eacute;grine</div><p>Built a ticketless parking system with React, JavaScript, FastAPI and MongoDB.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="sec-head"><h2 id="skills-h">Skills</h2></div>
+    <div class="skills">
+      <div class="skill"><h3>Cloud</h3><div class="chips"><span class="chip">AWS</span><span class="chip">S3</span><span class="chip">CloudFront</span><span class="chip">WAF</span><span class="chip">Cognito</span><span class="chip">DynamoDB</span><span class="chip">X-Ray</span><span class="chip">Serverless</span></div></div>
+      <div class="skill"><h3>Automation</h3><div class="chips"><span class="chip">Terraform</span><span class="chip">Ansible</span><span class="chip">GitLab CI</span><span class="chip">Git</span></div></div>
+      <div class="skill"><h3>Containers</h3><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span></div></div>
+      <div class="skill"><h3>Systems and support</h3><div class="chips"><span class="chip">Windows Server</span><span class="chip">Linux</span><span class="chip">Active Directory</span><span class="chip">GPO</span><span class="chip">DNS</span><span class="chip">DHCP</span><span class="chip">VMware</span><span class="chip">Hyper-V</span><span class="chip">Backup</span></div></div>
+      <div class="skill"><h3>Development</h3><div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Java</span></div></div>
+      <div class="skill"><h3>Data</h3><div class="chips"><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">DynamoDB</span></div></div>
+    </div>
+    <div class="edu">
+      <p><span class="k">Education</span>Licence in Computer Science, ISI Ariana, University of Tunis El Manar, 2021 &ndash; 2024, with honors. First year of a Master&rsquo;s in Data Science and Information Retrieval, ISSAM Manouba.</p>
+      <p><span class="k">Languages</span>Arabic (native), English (C1), French (B2).</p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="contact">
+      <h2 id="contact-h">Let&rsquo;s talk</h2>
+      <p>I am looking for a junior cloud administrator or IT support role where I can work on real infrastructure with an experienced team.</p>
+      <div class="mail" id="mail">Mootaz.akermi.pro@gmail.com</div>
+      <div class="actions">
+        <button class="btn primary" type="button" id="copyBtn">Copy email</button>
+        <a class="btn" data-link="linkedin" hidden target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" data-link="github" hidden target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <footer>Mootaz Akermi &middot; Tunisia</footer>
+  </section>
+</div>
+
+<script>
+/* Fill in your GitHub links here. A button with an empty value stays hidden. */
+var CONFIG = {
+  linkedin: "https://www.linkedin.com/in/mootaz-akermi",
+  github: "",
+  repoApi: "",
+  repoStatic: "",
+  site: "https://pathtechacademy.com",
+  email: "Mootaz.akermi.pro@gmail.com"
+};
+
+document.querySelectorAll("[data-link]").forEach(function (el) {
+  var url = CONFIG[el.getAttribute("data-link")];
+  if (url) { el.href = url; el.hidden = false; }
+});
+
+function copyEmail(btn) {
+  var label = btn.textContent;
+  function done(ok) {
+    btn.textContent = ok ? "Copied" : "Select the address";
+    setTimeout(function () { btn.textContent = label; }, 1800);
+  }
+  try {
+    navigator.clipboard.writeText(CONFIG.email).then(function () { done(true); }, function () { selectMail(); done(false); });
+  } catch (e) { selectMail(); done(false); }
+}
+function selectMail() {
+  var r = document.createRange();
+  r.selectNodeContents(document.getElementById("mail"));
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+document.getElementById("copyBtn").addEventListener("click", function () { copyEmail(this); });
+document.getElementById("copyTop").addEventListener("click", function () { copyEmail(this); });
+
+document.getElementById("themeBtn").addEventListener("click", function () {
+  var root = document.documentElement;
+  var current = root.getAttribute("data-theme");
+  if (!current) { current = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+  root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+});
+</script>
